@@ -1,0 +1,13 @@
+{
+  "presence": {
+    "interval": 30000,
+    "addedCount": 0,
+    "removedCount": 3
+  },
+  "server": {
+    "port": 3000
+  },
+  "storage": {
+    "path": "data.json"
+  }
+}
