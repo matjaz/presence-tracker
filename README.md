@@ -10,7 +10,7 @@ Tracker supports plugins to extend its functionality. Built-in plugins are REST 
 ### REST server
 All presence data is available through REST API.
 
-    GET / - returns all present devices.
+    GET / - returns all present devices
     GET /:id - get device
     GET /:id/data - get custom device data
     PATCH /:id/data - add custom device data
@@ -19,9 +19,11 @@ All presence data is available through REST API.
 Tracker supports dynamic hooks for `present` and `absent` events. It also supports REST interface managment.
 
     GET /hooks - return current webhooks
-    POST /hooks - dynamically add new webhook. Body JSON: {"event":"present","options":"http://localhost:1337/hooks/present"}. options can be URL string or [http.request options][request_options]
+    POST /hooks - dynamically add new webhook
     GET /hooks/:id - return webhook
     DELETE /hooks/:id - remove webhook
+
+POST body is JSON: `{"event":"present","options":"http://localhost:1337/hooks/present"}`. `options` can be URL string or [http.request options][request_options].
 
 ### Storage
 Storage persists custom device data.
