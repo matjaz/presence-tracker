@@ -85,8 +85,7 @@ export default class Webhooks {
       ctx.body = ctx.state.hook
     })
     router.delete('/:id', (ctx) => {
-      this.remove(ctx.params.id)
-      ctx.status = 204
+      ctx.status = this.remove(ctx.params.id) ? 204 : 404
     })
 
     router.get('/', (ctx) => {
