@@ -2,6 +2,7 @@ import Koa from 'koa'
 import Router from 'koa-66'
 import convert from 'koa-convert'
 import koaBodyParser from 'koa-body-parser'
+import pkg from '../package'
 
 export const bodyParser = convert(koaBodyParser())
 
@@ -70,10 +71,15 @@ export default class Server {
         ctx.body = this.presence.state
       }
     })
-    router.get('/:id', (ctx, next) => {
+    router.get('/.meta', (ctx) => {
+      ctx.body = {
+        version: pkg.version
+      }
+    })
+    router.get('/:id', (ctx) => {
       ctx.body = ctx.state.presence
     })
-    router.get('/:id/data', (ctx, next) => {
+    router.get('/:id/data', (ctx) => {
       ctx.body = ctx.state.presence.data
     })
     router.patch('/:id/data', bodyParser, async function (ctx) {
