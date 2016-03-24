@@ -9,8 +9,8 @@ export default class BufferedPresence extends Presence {
     this._bufferState = {}
   }
 
-  diff (currentPresence, newPresence) {
-    var diff = super.diff(currentPresence, newPresence)
+  diff (currentPresence, newPresence, type) {
+    var diff = super.diff(currentPresence, newPresence, type)
     var status = this._bufferState
     diff.added = diff.added.filter((p) => {
       var id = p.id

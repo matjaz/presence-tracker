@@ -16,7 +16,7 @@ export default class Presence extends EventEmitter {
   update () {
     this.providers.forEach(async function (provider) {
       var presence = await provider.fetch()
-      var {added, removed} = this.diff(this.state, presence)
+      var {added, removed} = this.diff(this.state, presence, provider.constructor.type)
       if (added.length) {
         added.forEach((p) => {
           this.state[p.id] = p
@@ -34,12 +34,14 @@ export default class Presence extends EventEmitter {
     return this
   }
 
-  diff (currentPresence, newPresence) {
+  diff (currentPresence, newPresence, type) {
     var currentIds = Object.keys(currentPresence)
     var addedIds = newPresence.map((p) => p.id)
     return {
       added: newPresence.filter((p) => !currentPresence[p.id]),
-      removed: difference(currentIds, addedIds).map((id) => currentPresence[id])
+      removed: difference(currentIds, addedIds)
+                  .map((id) => currentPresence[id])
+                  .filter((presence) => presence.type === type)
     }
   }
 

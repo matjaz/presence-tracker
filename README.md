@@ -2,7 +2,7 @@
 Simple modular presence tracker.
 
 ## Providers
-Providers are mechanism how to detect device presence. Built-in providers are ARP scan and ping. Additional providers such as HTTP, arping or even IBeacon can be added.
+Providers are mechanism how to detect device presence. Built-in providers are ARP scan, ping and TCP connect. Additional providers such as arping or even iBeacon can be added.
 
 ## Extensible
 Tracker supports plugins to extend its functionality. Built-in plugins are REST Server, Webhooks & Storage.

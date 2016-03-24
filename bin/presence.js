@@ -1,16 +1,26 @@
 import BufferedPresence from '../src/buffered_presence'
-import ArpScan from '../src/providers/arpscan'
 import WebHooks from '../src/webhooks'
 import FileStorage from '../src/file_storage'
 import Server from '../src/server'
 import config from '../config'
 
+const mount = {}
+const providers = []
+
+for (let providerName in config.providers) {
+  let Provider = require(`../src/providers/${providerName}`).default
+  let provider = new Provider(config.providers[providerName])
+  let router = provider.router
+  providers.push(provider)
+  if (router) {
+    mount[`providers/${providerName}`] = router
+  }
+}
+
 const presence = new BufferedPresence({
   interval: config.presence.interval, // ms
-  // update: false,
-  providers: [
-    new ArpScan()
-  ],
+  update: config.presence.update,
+  providers,
 
   // buffered config
   addedCount: config.presence.addedCount,
@@ -32,10 +42,10 @@ const webHooks = new WebHooks(presence, {
   hooks: config.hooks
 })
 
+mount.hooks = webHooks.router
+
 const server = new Server(presence, {
-  mount: {
-    hooks: webHooks.router
-  }
+  mount
 })
 
 server.listen(config.server.port, () => {

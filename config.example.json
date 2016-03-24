@@ -8,6 +8,15 @@
     "port": 3000
   },
   "storage": {
-    "path": "data.json"
+    "path": "/path/to/data.json"
+  },
+  "providers": {
+    "arpscan": {},
+    "ping": {
+      "path": "/path/to/provider.ping.json"
+    },
+    "tcp-connect": {
+      "path": "/path/to/provider.tcp-connect.json"
+    }
   }
 }
