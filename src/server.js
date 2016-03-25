@@ -88,11 +88,16 @@ export default class Server {
         version: pkg.version
       }
     })
+    router.get('/providers', (ctx) => {
+      ctx.body = this.presence.providers.map((provider) => ({
+        id: provider.constructor.type
+      }))
+    })
     router.get('/:id', (ctx) => {
       ctx.body = ctx.state.presence
     })
     router.get('/:id/data', (ctx) => {
-      ctx.body = ctx.state.presence.data
+      ctx.body = ctx.state.presence.data || {}
     })
     router.patch('/:id/data', bodyParser, async function (ctx) {
       try {
