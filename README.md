@@ -35,6 +35,8 @@ Example: Add check if router is accesible
 
 ARP scan does not support any configuration.
 
+***Note***: You need `arp-scan` binary on system to use ARP scan provider.
+
 ## Extensible
 Tracker supports plugins to extend its functionality. Built-in plugins are REST Server, Webhooks & Storage.
 
