@@ -23,6 +23,20 @@ export default class Server {
         ctx.set('X-Response-Time', ms + 'ms')
         console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
       })
+      app.use(async function (ctx, next) {
+        await next()
+        if (ctx.method === 'HEAD') {
+          ctx.remove('Content-Type')
+          ctx.body = ''
+        }
+      })
+      app.use((ctx, next) => {
+        if (ctx.request.type && ctx.request.type !== 'application/json') {
+          ctx.throw(415)
+        } else {
+          return next()
+        }
+      })
       this._app = app
     }
     return this._app
