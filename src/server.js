@@ -45,9 +45,7 @@ export default class Server {
     }
     router.param('id', (ctx, next, id) => {
       ctx.state.presence = this.presence.state[id]
-      if (!ctx.state.presence) {
-        ctx.throw(404)
-      }
+      ctx.assert(ctx.state.presence, 404)
       return next()
     })
     router.get('/', (ctx) => {
