@@ -49,6 +49,14 @@ All presence data is available through REST API.
     PATCH /:id/data - add custom device data
     GET /.meta - get metadata
 
+Add custom data with
+
+    curl -v -X PATCH -H 'Content-Type:application/json' 'http://localhost:3000/192.168.1.2/data' -d '{"name":"My phone"}'
+
+To remove data set property to null
+
+    curl -v -X PATCH -H 'Content-Type:application/json' 'http://localhost:3000/192.168.1.2/data' -d '{"name":null}'
+
 ### Webhooks
 Tracker supports dynamic hooks for `present` and `absent` events. It also supports REST interface managment.
 
@@ -57,7 +65,11 @@ Tracker supports dynamic hooks for `present` and `absent` events. It also suppor
     GET /hooks/:id - return webhook
     DELETE /hooks/:id - remove webhook
 
-POST body is JSON: `{"event":"present","options":"http://localhost:1337/hooks/present"}`. `options` can be URL string or [http.request options][request_options].
+Add new present webhook
+
+    curl -v -X POST -H 'Content-Type:application/json' 'http://localhost:3000/hooks' -d '{"event":"present","options":"http://localhost:1337/hooks/present"}'
+
+***Note***: `options` can be URL string or [http.request options][request_options].
 
 ### Storage
 Storage persists custom device data.
