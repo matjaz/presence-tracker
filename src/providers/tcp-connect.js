@@ -1,4 +1,6 @@
+import Promise from 'bluebird'
 import {createConnection} from 'net'
+
 import Base from './base'
 
 export default class TCPConnect extends Base {
@@ -10,39 +12,28 @@ export default class TCPConnect extends Base {
   }
 
   fetch () {
-    return new Promise((resolve) => {
-      var remaining = 1
-      const result = []
-      const done = () => {
-        if (!--remaining) {
-          resolve(result)
-        }
+    const result = []
+    const ids = this.items.map((item) => item.id)
+    const promises = this.items.map((item) => this.connect(item).reflect())
+    const update = (id, time, present) => {
+      var state = this.state[id]
+      state.time = time
+      state.present = present
+    }
+    return Promise.all(promises).each((inspection, index) => {
+      const id = ids[index]
+      const time = Date.now()
+      const present = inspection.isFulfilled()
+      update(id, time, present)
+      if (present) {
+        result.push({
+          id,
+          last: time,
+          type: TCPConnect.type
+        })
       }
-      this.items.forEach((item) => {
-        remaining++
-        const {id} = item
-        const time = Date.now()
-        const update = (present) => {
-          this.state[id] = {
-            present,
-            time
-          }
-        }
-        this.connect(item).then(() => {
-          update(true)
-          result.push({
-            id: id,
-            last: time,
-            type: TCPConnect.type
-          })
-          done()
-        })
-        .catch(() => {
-          update(false)
-          done()
-        })
-      })
-      done()
+    }).then(() => {
+      return result
     })
   }
 

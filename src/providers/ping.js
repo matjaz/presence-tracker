@@ -1,4 +1,6 @@
 import ping from 'ping'
+import Promise from 'bluebird'
+
 import Base from './base'
 
 export default class Ping extends Base {
@@ -10,43 +12,34 @@ export default class Ping extends Base {
   }
 
   fetch () {
-    return new Promise((resolve) => {
-      var remaining = 1
-      const result = []
-      const done = () => {
-        if (!--remaining) {
-          resolve(result)
+    const result = []
+    const ids = this.items.map((item) => item.id)
+    const promises = ids.map((id) => this.ping(id).reflect())
+    return Promise.all(promises).each((inspection, index) => {
+      if (inspection.isFulfilled()) {
+        const id = ids[index]
+        const state = this.state[id]
+        const {alive} = inspection.value()
+        // time & present are requeired fields for provider state
+        state.time = Date.now()
+        state.present = alive
+        if (alive) {
+          result.push({
+            id: state.id,
+            last: state.time,
+            type: Ping.type
+          })
         }
       }
-      this.items.forEach((item) => {
-        remaining++
-        const {id} = item
-        this.ping(id).then((res) => {
-          const time = Date.now()
-          const {alive} = res
-          this.state[id] = {
-            present: alive,
-            time
-          }
-          if (alive) {
-            result.push({
-              id: id,
-              last: time,
-              type: Ping.type
-            })
-          }
-          done()
-        })
-        .catch(done)
-      })
-      done()
+    }).then(() => {
+      return result
     })
   }
 
   ping (ip) {
-    return ping.promise.probe(ip, {
+    return Promise.resolve(ping.promise.probe(ip, {
       timeout: this.timeout
-    })
+    }))
   }
 
 }
