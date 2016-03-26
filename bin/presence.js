@@ -45,6 +45,7 @@ const webHooks = new WebHooks(presence, {
 mount.hooks = webHooks.router
 
 const server = new Server(presence, {
+  ...config.server,
   mount
 })
 

@@ -1,4 +1,5 @@
 import Koa from 'koa'
+import cors from 'kcors'
 import KRouter from 'koa-66'
 import convert from 'koa-convert'
 import koaBodyParser from 'koa-body-parser'
@@ -9,14 +10,21 @@ export const bodyParser = convert(koaBodyParser())
 
 export default class Server {
 
-  constructor (presence, options) {
+  constructor (presence, options = {}) {
     this.presence = presence
-    this.mount = options && options.mount
+    this.mount = options.mount
+    this.allowedOrigins = options.allowedOrigins
   }
 
   get app () {
     if (!this._app) {
       const app = new Koa()
+      if (this.allowedOrigins) {
+        app.use(convert(cors({
+          origin: this.allowedOrigins,
+          allowMethods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+        })))
+      }
       app.use(async function (ctx, next) {
         const start = new Date()
         await next()
