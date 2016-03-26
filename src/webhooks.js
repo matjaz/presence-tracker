@@ -74,9 +74,7 @@ export default class Webhooks {
     var router = new Router()
     router.param('id', (ctx, next, id) => {
       ctx.state.hook = this.get(id)
-      if (!ctx.state.hook) {
-        ctx.throw(404)
-      }
+      ctx.assert(ctx.state.hook, 404)
       next()
     })
 

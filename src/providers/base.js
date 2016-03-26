@@ -65,9 +65,7 @@ export default class Base {
     const router = new Router()
     router.param('id', (ctx, next, id) => {
       ctx.state.itemData = this.state[id]
-      if (!ctx.state.itemData) {
-        ctx.throw(404)
-      }
+      ctx.assert(ctx.state.itemData, 404)
       next()
     })
 
