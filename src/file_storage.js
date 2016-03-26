@@ -8,16 +8,18 @@ export default class FileStorage extends Storage {
   }
 
   load () {
-    return new Promise((resolve) => {
-      this.data = require(this.path)
-      resolve()
-    })
+    this.data = require(this.path)
   }
 
   save () {
-    return new Promise((resolve) => {
-      writeFile(this.path, JSON.stringify(this.data))
-      resolve()
+    return new Promise((resolve, reject) => {
+      writeFile(this.path, JSON.stringify(this.data), (err) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve()
+        }
+      })
     })
   }
 }
