@@ -1,7 +1,6 @@
-import Router from 'koa-66'
 import JSONStore from 'json-store'
 
-import {bodyParser} from '../server'
+import {Router, bodyParser} from '../server'
 
 export default class Base {
 

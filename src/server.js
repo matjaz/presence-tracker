@@ -1,9 +1,10 @@
 import Koa from 'koa'
-import Router from 'koa-66'
+import KRouter from 'koa-66'
 import convert from 'koa-convert'
 import koaBodyParser from 'koa-body-parser'
 import pkg from '../package'
 
+export const Router = KRouter
 export const bodyParser = convert(koaBodyParser())
 
 export default class Server {

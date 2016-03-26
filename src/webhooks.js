@@ -1,7 +1,6 @@
-import Router from 'koa-66'
 import {parse} from 'url'
 import {request} from 'http'
-import {bodyParser} from './server'
+import {Router, bodyParser} from './server'
 
 export default class Webhooks {
 
