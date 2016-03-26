@@ -19,8 +19,17 @@ export default class Presence extends EventEmitter {
       var {added, removed} = this.diff(this.state, presence, provider.constructor.type)
       if (added.length) {
         added.forEach((p) => {
+          p.first = p.last
           this.state[p.id] = p
         })
+      }
+      presence.forEach((p) => {
+        var state = this.state[p.id]
+        if (state) {
+          state.last = p.last
+        }
+      })
+      if (added.length) {
         this.emit('present', added)
       }
       if (removed.length) {
