@@ -49,12 +49,12 @@ export default class TCPConnect extends Base {
         resolve()
       })
       .on('error', (err) => {
-        reject(err)
         socket.end()
+        reject(err)
       })
       .setTimeout(options.timeout || this.timeout, () => {
-        reject('timeout')
         socket.end()
+        reject('timeout')
       })
     })
   }
