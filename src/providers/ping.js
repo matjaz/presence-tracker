@@ -31,9 +31,7 @@ export default class Ping extends Base {
           })
         }
       }
-    }).then(() => {
-      return result
-    })
+    }).then(() => result)
   }
 
   ping (ip) {

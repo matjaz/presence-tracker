@@ -32,9 +32,7 @@ export default class TCPConnect extends Base {
           type: TCPConnect.type
         })
       }
-    }).then(() => {
-      return result
-    })
+    }).then(() => result)
   }
 
   addItem (data) {
