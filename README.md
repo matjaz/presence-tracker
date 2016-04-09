@@ -17,7 +17,7 @@ Each provider can be dynamically configured. Including listing, adding & removin
     GET /providers/:id - list all devices
     GET /providers/:id/:deviceId - show device details
     POST /providers/:id - Add a device
-    DELETE /providers/:id - Remove a device
+    DELETE /providers/:id/:deviceId - Remove a device
 
 #### Ping (ID: `ping`)
 
@@ -43,11 +43,11 @@ Tracker supports plugins to extend its functionality. Built-in plugins are REST 
 ### REST server
 All presence data is available through REST API.
 
+    GET /.meta - get metadata
     GET / - returns all present devices
     GET /:id - get device
     GET /:id/data - get custom device data
     PATCH /:id/data - add custom device data
-    GET /.meta - get metadata
 
 Add custom data with
 

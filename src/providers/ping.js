@@ -20,7 +20,7 @@ export default class Ping extends Base {
         const id = ids[index]
         const state = this.state[id]
         const {alive} = inspection.value()
-        // time & present are requeired fields for provider state
+        // time & present are required fields for provider state
         state.time = Date.now()
         state.present = alive
         if (alive) {
