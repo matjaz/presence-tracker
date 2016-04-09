@@ -6,6 +6,7 @@
   },
   "server": {
     "port": 3000,
+    "logRequest": false,
     "allowedOrigins": ["http://homey.local"]
   },
   "storage": {

@@ -13,6 +13,7 @@ export default class Server {
   constructor (presence, options = {}) {
     this.presence = presence
     this.mount = options.mount
+    this.logRequest = options.logRequest
     this.allowedOrigins = options.allowedOrigins
   }
 
@@ -30,8 +31,10 @@ export default class Server {
         await next()
         const ms = new Date() - start
         ctx.set('X-Response-Time', ms + 'ms')
-        console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-      })
+        if (this.logRequest) {
+          console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+        }
+      }.bind(this))
       app.use(async function (ctx, next) {
         await next()
         if (ctx.method === 'HEAD') {
