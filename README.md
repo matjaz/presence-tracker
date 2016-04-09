@@ -1,6 +1,20 @@
 # Presence tracker
 Simple modular presence tracker.
 
+## Installation
+
+    npm install -g presence-tracker
+
+### Configure
+
+    curl -o config.json https://raw.githubusercontent.com/matjaz/presence-tracker/master/config.example.json
+    # edit providers & paths to json files (should be writeable)
+    nano config.json
+
+### Run server
+
+    presence-tracker -c config.json
+
 ## Providers
 Providers are mechanism how to detect device presence. Built-in providers are ARP scan, ping and TCP connect. Additional providers such as arping or even iBeacon can be added.
 
@@ -73,15 +87,5 @@ Add new present webhook
 
 ### Storage
 Storage persists custom device data.
-
-# Setup
-
-    cp config.example.json config.json
-    # edit config
-    npm install
-
-# Run server
-
-    npm start
 
 [request_options]: https://nodejs.org/api/http.html#http_http_request_options_callback
