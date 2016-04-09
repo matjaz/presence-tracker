@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import 'babel-polyfill'
 import {readFileSync} from 'fs'
 import BufferedPresence from '../src/buffered_presence'

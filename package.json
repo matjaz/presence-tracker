@@ -1,9 +1,9 @@
 {
   "name": "presence-tracker",
-  "version": "1.3.0",
+  "version": "1.5.0",
   "description": "Simple presence tracker.",
   "bin": {
-    "presence-tracker": "dist/bin/cli"
+    "presence-tracker": "dist/bin/cli.js"
   },
   "scripts": {
     "clean": "rm -rf dist/*/",
