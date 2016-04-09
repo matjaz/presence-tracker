@@ -1,8 +1,16 @@
+import 'babel-polyfill'
+import {readFileSync} from 'fs'
 import BufferedPresence from '../src/buffered_presence'
 import WebHooks from '../src/webhooks'
 import FileStorage from '../src/file_storage'
 import Server from '../src/server'
-import config from '../config'
+
+if (process.argv.length !== 4 || process.argv[2] !== '-c') {
+  console.error('Usage: presence-tracker -c configfile')
+  process.exit(1)
+}
+
+const config = JSON.parse(readFileSync(process.argv[3], 'utf8'))
 
 const mount = {}
 const providers = []
@@ -18,13 +26,8 @@ for (let providerName in config.providers) {
 }
 
 const presence = new BufferedPresence({
-  interval: config.presence.interval, // ms
-  update: config.presence.update,
+  ...config.presence,
   providers,
-
-  // buffered config
-  addedCount: config.presence.addedCount,
-  removedCount: config.presence.removedCount
 })
 // .on('present', (present) => {
 //   console.log('present', present.map((p) => p.id).join(','))
@@ -33,22 +36,27 @@ const presence = new BufferedPresence({
 //   console.log('absent', absent.map((p) => p.id).join(','))
 // })
 
-const storage = new FileStorage(presence, {
-  path: config.storage.path
-})
-storage
+if (config.storage) {
+  const storage = new FileStorage(presence, {
+    path: config.storage.path
+  })
+}
 
-const webHooks = new WebHooks(presence, {
-  hooks: config.hooks
-})
+if (config.hooks) {
+  const webHooks = new WebHooks(presence, {
+    hooks: config.hooks
+  })
 
-mount.hooks = webHooks.router
+  mount.hooks = webHooks.router
+}
 
-const server = new Server(presence, {
-  ...config.server,
-  mount
-})
+if (config.server) {
+  const server = new Server(presence, {
+    ...config.server,
+    mount
+  })
 
-server.listen(config.server.port, () => {
-  console.log(`listening on ${config.server.port}`)
-})
+  server.listen(config.server.port, () => {
+    console.log(`listening on ${config.server.port}`)
+  })  
+}

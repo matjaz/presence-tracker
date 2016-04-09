@@ -11,6 +11,7 @@
   "storage": {
     "path": "/path/to/data.json"
   },
+  "hooks": [],
   "providers": {
     "arpscan": {},
     "ping": {
