@@ -9,9 +9,9 @@ Simple modular presence tracker.
 
     curl -o config.json https://raw.githubusercontent.com/matjaz/presence-tracker/master/config.example.json
     # edit providers & paths to json files (should be writeable)
-    nano config.json
+    vi config.json
 
-### Run server
+### Start tracker
 
     presence-tracker -c config.json
 

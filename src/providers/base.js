@@ -1,13 +1,14 @@
 import JSONStore from 'json-store'
 
 import {Router, bodyParser} from '../server'
+import {configPath} from '../util'
 
 export default class Base {
 
   constructor (options = {}) {
     const items = this.items = options.items || []
     if (options.path) {
-      this.store = JSONStore(options.path)
+      this.store = JSONStore(configPath(options.path))
       let storeItems = this.store.get('items')
       if (storeItems) {
         items.push(...storeItems)

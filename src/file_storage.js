@@ -1,14 +1,18 @@
-import {writeFile} from 'fs'
+import {statSync, writeFile} from 'fs'
 import Storage from './storage'
+import {configPath} from './util'
 
 export default class FileStorage extends Storage {
   constructor (presence, options) {
     super(presence, options)
-    this.path = options.path
+    this.path = configPath(options.path)
   }
 
   load () {
-    this.data = require(this.path)
+    try {
+      statSync(this.path)
+      this.data = require(this.path)
+    } catch (e) {}
   }
 
   save () {

@@ -10,16 +10,16 @@
     "allowedOrigins": ["http://homey.local"]
   },
   "storage": {
-    "path": "/path/to/data.json"
+    "path": "data.json"
   },
   "hooks": [],
   "providers": {
     "arpscan": {},
     "ping": {
-      "path": "/path/to/provider.ping.json"
+      "path": "provider.ping.json"
     },
     "tcp-connect": {
-      "path": "/path/to/provider.tcp-connect.json"
+      "path": "provider.tcp-connect.json"
     }
   }
 }
