@@ -1,5 +1,5 @@
 .*
 /bin
 /src
-/data
+/data/*.json
 /config*.json
