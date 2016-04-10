@@ -7,6 +7,11 @@ import WebHooks from '../src/webhooks'
 import FileStorage from '../src/file_storage'
 import Server from '../src/server'
 
+if (process.argv.length === 3 && process.argv[2] === '-v') {
+  console.log(`Version: ${require('../package').version}`)
+  process.exit()
+}
+
 if (process.argv.length !== 4 || process.argv[2] !== '-c') {
   console.error('Usage: presence-tracker -c configfile')
   process.exit(1)
@@ -29,7 +34,7 @@ for (let providerName in config.providers) {
 
 const presence = new BufferedPresence({
   ...config.presence,
-  providers,
+  providers
 })
 // .on('present', (present) => {
 //   console.log('present', present.map((p) => p.id).join(','))
@@ -60,5 +65,5 @@ if (config.server) {
 
   server.listen(config.server.port, () => {
     console.log(`listening on ${config.server.port}`)
-  })  
+  })
 }

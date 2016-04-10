@@ -5,6 +5,8 @@ Simple modular presence tracker.
 
     npm install -g presence-tracker
 
+***Note***: Requires Node version 4+ LTS.
+
 ### Configure
 
     curl -o config.json https://raw.githubusercontent.com/matjaz/presence-tracker/master/config.example.json
@@ -38,6 +40,8 @@ Each provider can be dynamically configured. Including listing, adding & removin
 Add new device to check
 
     curl -v -X POST -H 'Content-Type:application/json' 'http://localhost:3000/providers/ping' -d '{"id":"192.168.1.1"}'
+
+***Note***: You need `ping` binary on system to use ping provider.
 
 #### TCP connect (`tcp-connect`)
 
@@ -86,6 +90,6 @@ Add new present webhook
 ***Note***: `options` can be URL string or [http.request options][request_options].
 
 ### Storage
-Storage persists custom device data.
+Storage persists custom device data, when app is restarted.
 
 [request_options]: https://nodejs.org/api/http.html#http_http_request_options_callback
