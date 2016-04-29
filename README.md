@@ -13,6 +13,8 @@ Simple modular presence tracker.
     # edit providers & paths to json files (should be writeable)
     vi config.json
 
+See [config options][config_options] for detailed explanation.
+
 ### Start tracker
 
     presence-tracker -c config.json
@@ -92,4 +94,5 @@ Add new present webhook
 ### Storage
 Storage persists custom device data, when app is restarted.
 
+[config_options]: https://github.com/matjaz/presence-tracker/wiki/Config-options
 [request_options]: https://nodejs.org/api/http.html#http_http_request_options_callback
