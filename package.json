@@ -1,6 +1,6 @@
 {
   "name": "presence-tracker",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Simple presence tracker.",
   "bin": {
     "presence-tracker": "dist/bin/cli.js"
@@ -26,7 +26,7 @@
     "bluebird": "^3.3.4",
     "json-store": "0.0.1",
     "kcors": "^1.1.0",
-    "koa": "^2.0.0-alpha.3",  
+    "koa": "^2.0.0-alpha.3",
     "koa-66": "^0.8.4",
     "koa-convert": "^1.2.0",
     "koa-body-parser": "^1.1.2",
