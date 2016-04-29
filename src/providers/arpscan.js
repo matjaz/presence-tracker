@@ -3,6 +3,10 @@ import arpscan from 'arpscan'
 export default class ArpScan {
   static type = 'arpscan'
 
+  constructor (options) {
+    this.options = options
+  }
+
   fetch () {
     return new Promise((resolve, reject) => {
       arpscan((err, data) => {
@@ -20,7 +24,7 @@ export default class ArpScan {
           ip: presence.ip,
           vendor: presence.vendor !== '(Unknown)' && presence.vendor || null
         })))
-      })
+      }, this.options)
     })
   }
 }

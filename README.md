@@ -47,13 +47,13 @@ Add new device to check
 
 #### TCP connect (`tcp-connect`)
 
-Example: Add check if router is accesible
+Example: Add check if router is accessible
 
     curl -v -X POST -H 'Content-Type:application/json' 'http://localhost:3000/providers/tcp-connect' -d '{"id":"router","host":"192.168.1.1","port":80}'
 
 #### ARP scan (`arpscan`)
 
-ARP scan does not support any configuration.
+ARP scan [config options][config_options] are passed to [arpscan package][arpscan-package].
 
 ***Note***: You need `arp-scan` binary on system to use ARP scan provider.
 
@@ -96,3 +96,4 @@ Storage persists custom device data, when app is restarted.
 
 [config_options]: https://github.com/matjaz/presence-tracker/wiki/Config-options
 [request_options]: https://nodejs.org/api/http.html#http_http_request_options_callback
+[arpscan-package]: https://www.npmjs.com/package/arpscan
