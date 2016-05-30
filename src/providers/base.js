@@ -62,7 +62,6 @@ export default class Base {
   }
 
   get router () {
-    const self = this
     const router = new Router()
     router.param('id', (ctx, next, id) => {
       ctx.state.itemData = this.state[id]
@@ -77,11 +76,11 @@ export default class Base {
       ctx.body = ctx.state.itemData
     })
     router.delete('/:id', async function (ctx) {
-      const success = await self.remove(ctx.params.id)
+      const success = await this.remove(ctx.params.id)
       ctx.status = success ? 204 : 404
-    })
+    }.bind(this))
     router.post('/', bodyParser, async function (ctx) {
-      const resp = await self.add(ctx.request.body)
+      const resp = await this.add(ctx.request.body)
       if (resp) {
         ctx.set('Location', resp.id)
         ctx.status = 201
@@ -89,7 +88,7 @@ export default class Base {
       } else {
         ctx.status = 409
       }
-    })
+    }.bind(this))
     return router
   }
 }

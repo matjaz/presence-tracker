@@ -62,7 +62,6 @@ export default class Server {
   }
 
   initRoutes () {
-    var self = this
     var router = this.router
     if (this.mount) {
       for (let path in this.mount) {
@@ -113,11 +112,11 @@ export default class Server {
     })
     router.patch('/:id/data', bodyParser, async function (ctx) {
       try {
-        ctx.body = await self.presence.setData(ctx.state.presence.id, ctx.request.body)
+        ctx.body = await this.presence.setData(ctx.state.presence.id, ctx.request.body)
       } catch (e) {
         console.error(e)
       }
-    })
+    }.bind(this))
     this.app.use(router.routes())
   }
 
