@@ -3,7 +3,6 @@ import WebHooks from '../src/webhooks'
 import FileStorage from '../src/file_storage'
 import Server from '../src/server'
 
-
 export default function start (options) {
   const mount = {}
   const providers = []
@@ -14,7 +13,7 @@ export default function start (options) {
     let router = provider.router
     providers.push(provider)
     if (router) {
-      mount[`providers/${providerName}`] = router
+      mount[`providers/${Provider.type}`] = router
     }
   }
 
