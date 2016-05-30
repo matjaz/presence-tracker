@@ -1,6 +1,6 @@
 {
   "name": "presence-tracker",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "Simple presence tracker.",
   "bin": {
     "presence-tracker": "dist/bin/cli.js"
