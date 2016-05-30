@@ -15,6 +15,7 @@
   "hooks": [],
   "providers": {
     "arpscan": {},
+    "http": {},
     "ping": {
       "path": "provider.ping.json"
     },

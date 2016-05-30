@@ -57,6 +57,16 @@ ARP scan [config options][config_options] are passed to [arpscan package][arpsca
 
 ***Note***: You need `arp-scan` binary on system to use ARP scan provider.
 
+#### HTTP (ID: `http`)
+
+Mark device as present
+
+    curl -v -X POST http://localhost:3000/providers/http/mydevice/present
+
+Mark device as absent
+
+    curl -v -X DELETE http://localhost:3000/providers/http/mydevice
+
 ## Extensible
 Tracker supports plugins to extend its functionality. Built-in plugins are REST Server, Webhooks & Storage.
 
