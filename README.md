@@ -1,4 +1,6 @@
 # Presence tracker
+[![NPM][npm-image]][npm-url] [![js-standard-style][standard-image]][standard-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]
+
 Simple modular presence tracker.
 
 ## Installation
@@ -107,3 +109,11 @@ Storage persists custom device data, when app is restarted.
 [config_options]: https://github.com/matjaz/presence-tracker/wiki/Config-options
 [request_options]: https://nodejs.org/api/http.html#http_http_request_options_callback
 [arpscan-package]: https://www.npmjs.com/package/arpscan
+[npm-image]: https://img.shields.io/npm/v/presence-tracker.svg
+[npm-url]: https://www.npmjs.com/package/presence-tracker
+[standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
+[standard-url]: http://standardjs.com
+[david-image]: https://img.shields.io/david/matjaz/presence-tracker.svg?style=flat
+[david-url]: https://david-dm.org/matjaz/presence-tracker
+[david-dev-image]: https://img.shields.io/david/dev/matjaz/presence-tracker.svg?style=flat
+[david-dev-url]: https://david-dm.org/matjaz/presence-tracker#info=devDependencies
