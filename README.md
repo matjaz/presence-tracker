@@ -106,6 +106,15 @@ Add new present webhook
 ### Storage
 Storage persists custom device data, when app is restarted.
 
+### Donate
+
+If you like the app, buy me a beer!  
+[![Paypal donate][pp-donate-image]][pp-donate-link]
+
+Bitcoin address <a href="bitcoin:1CsnykfypeoemhhUXcr28EbHjv5DViAZfm" title="Bitcoin address 1CsnykfypeoemhhUXcr28EbHjv5DViAZfm">1CsnykfypeoemhhUXcr28EbHjv5DViAZfm</a>
+
+![Bitcoin donate][btc-donate-image]]
+
 [config_options]: https://github.com/matjaz/presence-tracker/wiki/Config-options
 [request_options]: https://nodejs.org/api/http.html#http_http_request_options_callback
 [arpscan-package]: https://www.npmjs.com/package/arpscan
@@ -117,3 +126,6 @@ Storage persists custom device data, when app is restarted.
 [david-url]: https://david-dm.org/matjaz/presence-tracker
 [david-dev-image]: https://img.shields.io/david/dev/matjaz/presence-tracker.svg?style=flat
 [david-dev-url]: https://david-dm.org/matjaz/presence-tracker#info=devDependencies
+[pp-donate-link]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Y63PX8NDJYVZN&lc=US&item_name=Homey%20app&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
+[pp-donate-image]: https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
+[btc-donate-image]: https://cloud.githubusercontent.com/assets/10425/15658693/d84c9018-26bf-11e6-9128-ce426a1ead43.png
