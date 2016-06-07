@@ -22,7 +22,7 @@ See [config options][config_options] for detailed explanation.
     presence-tracker -c config.json
 
 ## Providers
-Providers are mechanism how to detect device presence. Built-in providers are ARP scan, ping and TCP connect. Additional providers such as arping or even iBeacon can be added.
+Providers are mechanism how to detect device presence. Built-in providers are ARP scan, ping, TCP connect and HTTP. Additional providers such as arping or even iBeacon can be added.
 
 ### Providers API
 

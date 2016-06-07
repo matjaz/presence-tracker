@@ -72,6 +72,7 @@ export default class Server {
       for (let path in this.mount) {
         router.mount('/' + path, this.mount[path])
       }
+      this.mount = null
     }
     router.param('id', (ctx, next, id) => {
       ctx.state.presence = this.presence.state[id]
