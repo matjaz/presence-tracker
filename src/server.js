@@ -1,4 +1,5 @@
 import Koa from 'koa'
+import jwt from 'koa-jwt'
 import cors from 'kcors'
 import KRouter from 'koa-66'
 import convert from 'koa-convert'
@@ -12,6 +13,7 @@ export default class Server {
 
   constructor (presence, options = {}) {
     this.presence = presence
+    this.jwt = options.jwt
     this.mount = options.mount
     this.logRequest = options.logRequest
     this.allowedOrigins = options.allowedOrigins
@@ -35,6 +37,9 @@ export default class Server {
           console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
         }
       }.bind(this))
+      if (this.jwt) {
+        app.use(jwt(this.jwt))
+      }
       app.use(async function (ctx, next) {
         await next()
         if (ctx.method === 'HEAD') {
@@ -96,7 +101,8 @@ export default class Server {
     })
     router.get('/.meta', (ctx) => {
       ctx.body = {
-        version: pkg.version
+        version: pkg.version,
+        user: ctx.state.user
       }
     })
     router.get('/providers', (ctx) => {

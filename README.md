@@ -69,6 +69,9 @@ Mark device as absent
 
     curl -v -X DELETE http://localhost:3000/providers/http/mydevice
 
+## Authorization
+You can use [JWT][jwt-url] for authorization. See [config options][config_options].
+
 ## Extensible
 Tracker supports plugins to extend its functionality. Built-in plugins are REST Server, Webhooks & Storage.
 
@@ -118,6 +121,7 @@ Bitcoin address <a href="bitcoin:1CsnykfypeoemhhUXcr28EbHjv5DViAZfm" title="Bitc
 [config_options]: https://github.com/matjaz/presence-tracker/wiki/Config-options
 [request_options]: https://nodejs.org/api/http.html#http_http_request_options_callback
 [arpscan-package]: https://www.npmjs.com/package/arpscan
+[jwt-url]: https://jwt.io
 [npm-image]: https://img.shields.io/npm/v/presence-tracker.svg
 [npm-url]: https://www.npmjs.com/package/presence-tracker
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
