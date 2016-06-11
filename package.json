@@ -34,7 +34,7 @@
     "ping": "^0.1.10"
   },
   "devDependencies": {
-    "babel-cli": "^6.9.0",
+    "babel-cli": "^6.10.0",
     "babel-eslint": "^6.0.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
