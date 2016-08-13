@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "arpscan": "^0.1.0",
-    "babel-polyfill": "^6.9.1",
+    "babel-polyfill": "^6.13.0",
     "bluebird": "^3.4.0",
     "json-store": "0.0.1",
     "kcors": "^1.2.1",
