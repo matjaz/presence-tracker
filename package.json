@@ -27,7 +27,7 @@
     "json-store": "0.0.1",
     "kcors": "^1.2.1",
     "koa": "^2.0.0-alpha.3",
-    "koa-66": "^0.8.5",
+    "koa-66": "^1.0.0",
     "koa-body-parser": "^1.1.2",
     "koa-convert": "^1.2.0",
     "lodash.difference": "^4.5.0",
